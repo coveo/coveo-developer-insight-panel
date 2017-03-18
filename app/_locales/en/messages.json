@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "Coveo Developer Insight Panel",
+    "description": "Coveo Developer Insight Panel"
+  },
+  "appDescription": {
+    "message": "This tool will help Coveo developers in their journey.",
+    "description": "Search Interface, Bookmarks, Code snippets"
+  }
+}

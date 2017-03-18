@@ -1,0 +1,10 @@
+{
+  "name": "coveo-developer-insight-panel",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
