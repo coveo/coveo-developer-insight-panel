@@ -1,8 +1,11 @@
 # coveo-developer-insight-panel
 Coveo Developer Insight Panel
 
+## Installation
 
-## Useful commands
+Use `npm install` command to install `node_modules`
+
+## Build
 
 Use `gulp` command to build the extension into dist folder
 

@@ -30,7 +30,8 @@
         "https://*/*"
       ],
       "js": [
-        "scripts/contentscript.js"
+        "scripts/contentscript.js",
+        "scripts/coveo.js"
       ],
       "run_at": "document_end",
       "all_frames": false
