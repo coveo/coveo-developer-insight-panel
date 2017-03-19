@@ -6,10 +6,6 @@ chrome.runtime.onInstalled.addListener(function (details) {
 
 // console.log('\'Allo \'Allo! Event Page for Browser Action');
 
-// Copyright (c) 2012 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 // This event is fired each time the user updates the text in the omnibox,
 // as long as the extension's keyword mode is still active.
 chrome.omnibox.onInputChanged.addListener(function (text, suggest) {
@@ -48,4 +44,16 @@ chrome.omnibox.onInputEntered.addListener(function (text) {
       url: action_url
     });
   }
+});
+
+function doStuffWithDOM(element) {
+  alert('I received the following DOM content:\n' + element);
+}
+
+chrome.browserAction.onClicked.addListener(function (tab) {
+  console.log('browserAction.onClicked');
+
+  chrome.tabs.sendMessage(tab.id, {
+    text: 'report_back'
+  }, doStuffWithDOM);
 });
