@@ -1,6 +1,29 @@
 'use strict';
 
-console.log('devtools.js');
+// console.log('devtools.js');
+
+function createSidebarCoveoInsight() {
+  chrome.devtools.panels.elements.createSidebarPane('Coveo Insight',
+    function (sidebar) {
+      // console.log('initialize sidebar CoveoInsight');
+
+      chrome.devtools.inspectedWindow.eval(
+        'getSidebarCoveoInsight()',
+        function (result, isException) {
+          if (isException) {
+            console.log(isException);
+          } else {
+            // console.log('set sidebarObject='+result);
+            sidebar.setObject(result);
+          }
+        }
+      );
+
+      // sidebar.setPage('devtools_filters.html');
+      sidebar.setHeight('8ex');
+    });
+}
+/******************************/
 
 chrome.devtools.panels.create(
   'Coveo',
@@ -10,32 +33,16 @@ chrome.devtools.panels.create(
 );
 
 window.addEventListener('load', function load(event) {
-
-  chrome.devtools.panels.elements.createSidebarPane('Coveo.Filters',
-    function (sidebar) {
-      // sidebar.setExpression(parseJwt('Coveo.SearchEndpoint.endpoints.default.options.accessToken').filter);
-
-      // sidebar.onShown.addListener(function (window) {
-      //   console.log(Coveo);
-      // });
-
-      // sidebar.setExpression('Coveo.SearchEndpoint.endpoints.default.options.accessToken');
-
-      // sidebar.setPage('devtools_filters.html');
-      sidebar.setHeight('8ex');
-    });
-
-  chrome.devtools.panels.elements.createSidebarPane('Coveo.UserIdentities',
-    function (sidebar) {
-      // sidebar.setExpression(parseJwt('Coveo.SearchEndpoint.endpoints.default.options.accessToken'));
-      // sidebar.setObject({
-      //   'user identities': [{
-      //     'name': '',
-      //     'provider': '',
-      //     'type': ''
-      //   }]
-      // });
-      // sidebar.setPage('devtools_user_identities.html');
-      sidebar.setHeight('8ex');
-    });
+  chrome.devtools.inspectedWindow.eval(
+    'Coveo.version',
+    function (result, isException) {
+      if (isException) {
+        // console.log('the page is not using Coveo');
+      } else {
+        console.log('Coveo JavaScript Search Framework detected: ');
+        console.log(result);
+        createSidebarCoveoInsight();
+      }
+    }
+  );
 }, false);

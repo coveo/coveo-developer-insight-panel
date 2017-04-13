@@ -1,6 +1,6 @@
 {
   "name": "__MSG_appName__",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "manifest_version": 2,
   "description": "__MSG_appDescription__",
   "icons": {
@@ -31,8 +31,8 @@
       "https://*/*"
     ],
     "js": [
-      "scripts/contentscript.js",
-      "scripts/coveo.js"
+      "scripts/coveo.js",
+      "scripts/contentscript.js"
     ],
     "run_at": "document_end",
     "all_frames": false

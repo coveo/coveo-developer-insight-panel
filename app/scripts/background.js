@@ -1,5 +1,21 @@
 'use strict';
 
+var notificationIdCoveoStatus;
+
+var omniboxCmd = {
+  'jsui doc': 'https://coveo.github.io/search-ui/globals.html',
+  'status v1': 'http://status.coveo.com/',
+  'status v2': 'http://status.cloud.coveo.com/',
+  'how-to': 'https://coveord.atlassian.net/wiki/display/PS/SS+Cookbook',
+  'code': 'https://bitbucket.org/coveord/',
+  'tsfdc': 'https://test.salesforce.com/',
+  'psfdc': 'https://login.salesforce.com/',
+  'ces': 'https://ces.corp.coveo.com/js/',
+  'releases': 'http://releasedashboard/',
+  'swgr1': 'https://cloudplatform.coveo.com/docs/',
+  'swgr2': 'https://platform.cloud.coveo.com/docs#!/'
+};
+
 chrome.runtime.onInstalled.addListener(function (details) {
   console.log('previousVersion', details.previousVersion);
 });
@@ -9,7 +25,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
 // This event is fired each time the user updates the text in the omnibox,
 // as long as the extension's keyword mode is still active.
 chrome.omnibox.onInputChanged.addListener(function (text, suggest) {
-  console.log('inputChanged: ' + text);
+  // console.log('inputChanged: ' + text);
   //call rest api
   suggest([{
     content: text + '&f:spaceFacet=[Coveo%20Cloud%20V2]',
@@ -22,10 +38,10 @@ chrome.omnibox.onInputChanged.addListener(function (text, suggest) {
     description: 'JavaScript Search Component | ' + text
   }, {
     content: text + '&f:spaceFacet=[Salesforce%20Integration%20V2]',
-    description: 'Coveo for Salesforce | ' + text
+    description: 'Salesforce | ' + text
   }, {
     content: text + '&f:spaceFacet=[Coveo%20for%20Sitecore%204.0]',
-    description: 'Coveo for Sitecore | ' + text
+    description: 'Sitecore | ' + text
   }]);
 });
 
@@ -34,26 +50,49 @@ chrome.omnibox.onInputEntered.addListener(function (text) {
   if (text == 'status') {
     chrome.notifications.create('', {
       type: 'basic',
-      iconUrl: '/images/icon-16.png',
-      title: 'my title',
-      message: 'my message<a href="https://status.coveo.com">status?</a>'
+      iconUrl: '/images/symbol.png',
+      title: 'Coveo Cloud Status',
+      message: 'This should display the status of Coveo Cloud',
+      buttons: [{
+        title: 'more informations...'
+      }]
+    }, function (notificationId) {
+      notificationIdCoveoStatus = notificationId;
+    });
+  } else if (omniboxCmd[text]) {
+    chrome.tabs.create({
+      url: omniboxCmd[text]
     });
   } else {
-    var action_url = 'https://search.coveo.com/#q=' + text;
     chrome.tabs.create({
-      url: action_url
+      url: 'https://search.coveo.com/#q=' + text
     });
   }
 });
 
-function doStuffWithDOM(element) {
-  alert('I received the following DOM content:\n' + element);
-}
-
-chrome.browserAction.onClicked.addListener(function (tab) {
-  console.log('browserAction.onClicked');
-
-  chrome.tabs.sendMessage(tab.id, {
-    text: 'report_back'
-  }, doStuffWithDOM);
+chrome.notifications.onButtonClicked.addListener(function (notificationId, buttonIndex) {
+  if (notificationIdCoveoStatus == notificationId && buttonIndex == 0) {
+    //coveo status: btn details
+    chrome.tabs.create({
+      url: 'http://status.coveo.com/'
+    });
+  }
 });
+
+// chrome.runtime.onMessage.addListener(
+//   function (request, sender, sendResponse) {
+//     console.log(sender.tab ?
+//       'from a content script:' + sender.tab.url :
+//       'from the extension');
+//     if (request.greeting == 'hello') {
+//       sendResponse({
+//         farewell: 'goodbye'
+//       });
+//     }
+
+//      if (request.isCoveoSearchInterface) {
+//       sendResponse({
+//         Coveo: 'background.js responding'
+//       });
+//     }
+//   });

@@ -4,7 +4,7 @@
     "description": "Coveo Developer Insight Panel"
   },
   "appDescription": {
-    "message": "This tool will help Coveo developers in their journey.",
+    "message": "This tool will help Coveo developers in their journey developping with the Coveo JavaScript Search Framework.",
     "description": "Search Interface, Bookmarks, Code snippets"
   }
 }

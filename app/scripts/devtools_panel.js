@@ -1,3 +1,3 @@
 'use strict';
 
-console.log('devtools_panel.js');
+// console.log('devtools_panel.js');
