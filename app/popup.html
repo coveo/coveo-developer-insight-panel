@@ -26,7 +26,7 @@
 
   <script src="vendors/coveo-search-ui/js/CoveoJsSearch.js"></script>
   <script src="vendors/coveo-search-ui/js/templatesNew.js"></script>
-  <script src="scripts/coveo.js"></script>
+  <!--<script src="scripts/coveo.js"></script>-->
 
   <script src="vendors/coveo-styleguide/js/CoveoStyleGuide.Dependencies.js"></script>
   <script src="vendors/coveo-styleguide/js/scripts.js"></script>
@@ -67,8 +67,7 @@
     </div>
     <div class="flex-auto"></div>
     <div class="header-section mod-padded flex flex-center">
-      <!-- Dropdown Structure -->
-      <ul id="dropdownCloudV1" class="dropdown-content">
+      <!--<ul id="dropdownCloudV1" class="dropdown-content">
         <li><a href="https://cloudplatform.coveo.com/login" target="_blank">Console</a></li>
         <li><a href="https://cloudplatform.coveo.com/docs/" target="_blank">Swagger</a></li>
       </ul>
@@ -79,12 +78,11 @@
       <nav>
         <div class="nav-wrapper">
           <ul class="right">
-            <!-- Dropdown Trigger -->
             <li><a class="dropdown-button" href="#!" data-activates="dropdownCloudV1">Cloud V1<i class="material-icons right">arrow_drop_down</i></a></li>
             <li><a class="dropdown-button" href="#!" data-activates="dropdownCloudV2">Cloud V2<i class="material-icons right">arrow_drop_down</i></a></li>
           </ul>
         </div>
-      </nav>
+      </nav>-->
     </div>
   </div>
 
@@ -101,12 +99,19 @@
   <!--<div class="CoveoHelloWorld"></div>   -->
   <div class="coveo-tab-section">
     <a class="CoveoTab" data-id="All" data-caption="All"></a>
-    <a class="CoveoTab" data-id="Salesforce" data-caption="Salesforce" data-expression="@syscfspacename==(&quot;Salesforce Integration V2&quot;)"></a>
-    <a class="CoveoTab" data-id="YouTube" data-caption="YouTube" data-expression="@syssource==(&quot;YouTube - Coveo Videos&quot;)"></a>
+    <a class="CoveoTab" data-id="JSUI" data-caption="JSUI" data-expression="@syssource==(&quot;Web - JsSearchRef&quot;) OR @syscfspacename==(&quot;JavaScript Search Framework V1&quot;)"></a>
+    <a class="CoveoTab" data-id="
+    
+    " data-caption="Salesforce" data-expression="@syscfspacename==(&quot;Salesforce Integration V2&quot;)"></a>
+    <a class="CoveoTab" data-id="Sitecore" data-caption="Sitecore" data-expression="@syscfspacename==(&quot;Coveo for Sitecore 4.0&quot;)"></a>
+
+
   </div>
   <div class="coveo-search-section">
     <div class="CoveoSettings"></div>
-    <div class="CoveoSearchbox" data-enable-omnibox="true"></div>
+    <div class="CoveoSearchbox" data-enable-omnibox="true" data-enable-search-as-you-type="true"
+             data-enable-reveal-query-suggest-addon="true"
+             data-enable-query-syntax="true"></div>
     <!--<div id="searchBox" class="CoveoSearchbox" data-enable-omnibox="true"
              data-inline="false"
              data-enable-wildcards="true"

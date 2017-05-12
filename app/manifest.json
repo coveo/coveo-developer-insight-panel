@@ -18,7 +18,8 @@
     "webRequest",
     "notifications",
     "*://*.coveo.com/",
-    "activeTab"
+    "activeTab",
+    "tabs"
   ],
   "options_ui": {
     "page": "options.html",
