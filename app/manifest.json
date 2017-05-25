@@ -1,5 +1,6 @@
 {
   "name": "__MSG_appName__",
+  "short_name": "__MSG_appShortName__",
   "version": "1.0.3",
   "manifest_version": 2,
   "description": "__MSG_appDescription__",
@@ -33,6 +34,7 @@
     ],
     "js": [
       "scripts/coveo.js",
+      "scripts/jsuicomponentsoptions.js",
       "scripts/contentscript.js"
     ],
     "run_at": "document_end",
